@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 
-//¶¨Òå Êé¼® ½á¹¹Ìå´æ´¢Êı¾İ
+//å®šä¹‰ ä¹¦ç± ç»“æ„ä½“å­˜å‚¨æ•°æ®
 typedef struct book
 {
 	int id;
@@ -13,12 +13,14 @@ typedef struct book
 
 static int num = 0;
 
- addBook(bk list[]);//Ìí¼ÓÊé¼®
- delBook();			//É¾³ıÊé¼®
- modifyBook();		//ĞŞ¸ÄÊé¼®ĞÅÏ¢
- queryBook();		//²éÑ¯Êé¼®ĞÅÏ¢
- void clean();		//clsÇåÆÁ
- int cout();		//²éÑ¯Êı×é¿ÕÈ±
+ addBook(bk list[]);//æ·»åŠ ä¹¦ç±
+ delBook();			//åˆ é™¤ä¹¦ç±
+ modifyBook();		//ä¿®æ”¹ä¹¦ç±ä¿¡æ¯
+ queryBook();		//æŸ¥è¯¢ä¹¦ç±ä¿¡æ¯ 
+ allBook();			//æ€»è§ˆæ‰€æœ‰ä¹¦ç±ä¿¡æ¯
+ void clean();		//clsæ¸…å±
+ int cout();		//æŸ¥è¯¢æ•°ç»„ç©ºç¼º
+
 
 
 int main()
@@ -27,11 +29,11 @@ int main()
 	bk bookList[10];
 	int cmd;
 	
-	printf("\n\n\n==========================»¶Ó­À´µ½Í¼ÊéĞÅÏ¢¹ÜÀíÏµÍ³=======================\n\n");
+	printf("\n\n\n==========================æ¬¢è¿æ¥åˆ°å›¾ä¹¦ä¿¡æ¯ç®¡ç†ç³»ç»Ÿ=======================\n\n");
 
 	while (1) {
-		printf("		  	  ÇëÊäÈëÒª½øĞĞµÄ²Ù×÷:\n\n");
-			printf("1.Ìí¼ÓÊé¼®	2.É¾³ıÊé¼®	3.ĞŞ¸ÄÊé¼®ĞÅÏ¢	4.²éÑ¯Êé¼®ĞÅÏ¢	5.ÍË³öÏµÍ³\n");
+		printf("		  	  è¯·è¾“å…¥è¦è¿›è¡Œçš„æ“ä½œ:\n\n");
+			printf("1.æ·»åŠ ä¹¦ç±	2.åˆ é™¤ä¹¦ç±	3.ä¿®æ”¹ä¹¦ç±ä¿¡æ¯    	4.æŸ¥è¯¢ä¹¦ç±ä¿¡æ¯    	5.æ‰€æœ‰å›¾ä¹¦	6.é€€å‡ºç³»ç»Ÿ	\n");
 			scanf("%d", &cmd);
 			clean();
 
@@ -52,151 +54,241 @@ int main()
 		queryBook(bookList);
 		break;
 	case 5:
+			allBook(bookList);
+			break;
+	case 6:
 		return;
-	default:
-		printf("		  	  ÄúÊäÈëµÄÊı¾İÓĞÎó£¬ÇëÖØĞÂÊäÈë£¡\n\n\n");
+	default: 
+	{
+		printf("		  	  æ‚¨è¾“å…¥çš„æ•°æ®æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n\n\n");
+		printf("\n\næŒ‰ä»»æ„é”®è¿”å›ç³»ç»Ÿ~~~\n\n\n");
+		int a = getch();
+		clean();
+	}
+		
 		break;
 
 	}
 	}
 	
 
-	//		Æ¥Åä·ÖÖ§¹¦ÄÜ
+	//		åŒ¹é…åˆ†æ”¯åŠŸèƒ½
 
 	
 	//printf("%d", cmd);
 
 }
 
-addBook(bk templist[])				//Ìí¼ÓÊé¼® 
+addBook(bk templist[])				//æ·»åŠ ä¹¦ç± 
 {
+	int i;
+	/*
 	printf("\nnum = %d\n", num);
-	printf("ÇëÊäÈëÒªÌí¼ÓÊé¼®µÄÃû³Æ£º");
+	bk* p = templist;
+	for (i = 0;i <= num;i++)
+	{
+		if (p->id < 0 || p->id>100)
+		{
+			n = i;
+			break;
+		}
+		else
+			n = num;
+	}
+	*/
+
+	printf("è¯·è¾“å…¥è¦æ·»åŠ ä¹¦ç±çš„åç§°ï¼š");
 	scanf("%s", &templist[num].name);
 
-	printf("\n\nÇëÊäÈëÒªÌí¼ÓÊé¼®µÄ×÷Õß£º");
+	printf("\n\nè¯·è¾“å…¥è¦æ·»åŠ ä¹¦ç±çš„ä½œè€…ï¼š");
 	scanf("%s", &templist[num].author);
 
-	printf("\n\nÇëÊäÈëÒªÌí¼ÓÊé¼®µÄ¼Û¸ñ£º");
+	printf("\n\nè¯·è¾“å…¥è¦æ·»åŠ ä¹¦ç±çš„ä»·æ ¼ï¼š");
 	scanf("%f", &templist[num].price);
 
-	templist[num].id = num;
+	templist[num].id = num+1;
 
-	printf("\n\n¡¶%s¡·µÄidÎª£º%d", templist[num].name,num+1);
+	printf("\n\nã€Š%sã€‹çš„idä¸ºï¼š%d", templist[num].name,num+1);
 	num++;
-	printf("\n\n°´ÈÎÒâ¼ü·µ»ØÏµÍ³~~~\n\n\n");
+	printf("\n\næŒ‰ä»»æ„é”®è¿”å›ç³»ç»Ÿ~~~\n\n\n");
 	int a = getch();
 	clean();
 	return templist;
 }
 
-delBook(bk templist[])				//É¾³ıÊé¼® 
+delBook(bk templist[])				//åˆ é™¤ä¹¦ç± 
 {
+	if (num == 0)
+	{
+		printf("å½“å‰å›¾ä¹¦é¦†é‡Œè¿˜æ²¡æœ‰ä¹¦ç±ï¼Œè¯·å…ˆæ·»åŠ ä¸€æœ¬ä¹¦å“¦~");
+		printf("\n\næŒ‰ä»»æ„é”®è¿”å›ç³»ç»Ÿ~~~\n\n\n");
+		int a = getch();
+		clean();
+		return;
+
+	}
 	int tempn, m, tempcmd, i;
 
-	//int n = cout(templist);
-	//printf("\n%d\n", n);
-	printf("Í¼ÊéÁĞ±í¼°idÈçÏÂ£º\n");
+	printf("å›¾ä¹¦åˆ—è¡¨åŠidå¦‚ä¸‹ï¼š\n");
 	for (i = 0;i <= num;i++)
 	{
 		if (templist[i].id >= 0 && templist[i].id < 100)
-			printf("\n\n¡¶%s¡·------%d", templist[i].name, templist[i].id + 1);
+			printf("\n\nã€Š%sã€‹------%d", templist[i].name, templist[i].id + 1);
 		else
 			printf("\n");
 
 		printf("\n");
-		//templist[i].id > 0 && templist[i].id < 100 ? printf("\n\n¡¶%s¡·------%d\n", templist[i].name, templist[i].id):printf("\n");
+		//templist[i].id > 0 && templist[i].id < 100 ? printf("\n\nã€Š%sã€‹------%d\n", templist[i].name, templist[i].id):printf("\n");
 	}
-	printf("\nÇëÊäÈëÒªÉ¾³ıÊé¼®µÄid£º");
+
+	printf("\nè¯·è¾“å…¥è¦åˆ é™¤ä¹¦ç±çš„idï¼š");
 	scanf("%d", &m);
-	//templist[ m - 1].name = "¸ÃÍ¼ÊéÒÑÏÂ¼Ü";
-	for (i = m - 1;i < num + 1;i++)
+	//templist[ m - 1].name = "è¯¥å›¾ä¹¦å·²ä¸‹æ¶";
+	for (i = m - 1;i <= num;i++)
 	{
-		templist[i] = templist[m];
+		templist[i] = templist[i+1];
+		templist[i].id--;
 	}
 	num--;
-	for (i = 0;i < num;i++)
+	/*
+	for (i = m - 1;i < num;i++)
 	{
 		templist[i].id--;
 	}
-	printf("ÏÂ¼Ü³É¹¦\n\n°´ÈÎÒâ¼ü¼ÌĞø~");
+	*/
+	printf("ä¸‹æ¶æˆåŠŸ\n\næŒ‰ä»»æ„é”®ç»§ç»­~");
 	tempn = getch();
 	clean();
 }
 
-modifyBook(bk templist[])			//ĞŞ¸ÄÊé¼®ĞÅÏ¢ 
+modifyBook(bk templist[])			//ä¿®æ”¹ä¹¦ç±ä¿¡æ¯ 
 {
+	if (num == 0)
+	{
+		printf("å½“å‰å›¾ä¹¦é¦†é‡Œè¿˜æ²¡æœ‰ä¹¦ç±ï¼Œè¯·å…ˆæ·»åŠ ä¸€æœ¬ä¹¦å“¦~");
+		printf("\n\næŒ‰ä»»æ„é”®è¿”å›ç³»ç»Ÿ~~~\n\n\n");
+		int a = getch();
+		clean();
+		return;
+	}
 	int tempn,tempm,tempcmd,i;
 	
 	int n = cout(templist);
 	//printf("\n%d\n", n);
-	printf("Í¼ÊéÁĞ±í¼°idÈçÏÂ£º\n");
+	printf("å›¾ä¹¦åˆ—è¡¨åŠidå¦‚ä¸‹ï¼š\n");
 	for (i = 0;i <= num;i++)
 	{		
 		if (templist[i].id >= 0 && templist[i].id < 100)
-			printf("\n\n¡¶%s¡·------%d", templist[i].name, templist[i].id+1);
+			printf("\n\nã€Š%sã€‹------%d", templist[i].name, templist[i].id);
 		else
 			printf("\n");
 
 		printf("\n");
-		//templist[i].id > 0 && templist[i].id < 100 ? printf("\n\n¡¶%s¡·------%d\n", templist[i].name, templist[i].id):printf("\n");
+		//templist[i].id > 0 && templist[i].id < 100 ? printf("\n\nã€Š%sã€‹------%d\n", templist[i].name, templist[i].id):printf("\n");
 	}
-	printf("\nÇëÊäÈëÒªĞŞ¸ÄµÄÊé¼®id£º");
+	printf("\nè¯·è¾“å…¥è¦ä¿®æ”¹çš„ä¹¦ç±idï¼š");
 	scanf("%d", &tempm);
 	clean();
 	tempn=tempm-1;
-	printf("\nÇëÊäÈëÒªĞŞ¸ÄÊé¼®µÄÄÄÏîÄÚÈİ£º");
-	printf("\n1.ÊéÃû		2.×÷Õß		3.¼Û¸ñ		\n");
+	printf("\nè¯·è¾“å…¥è¦ä¿®æ”¹ä¹¦ç±çš„å“ªé¡¹å†…å®¹ï¼š");
+	printf("\n1.ä¹¦å		2.ä½œè€…		3.ä»·æ ¼		\n");
 	scanf("%d", &tempcmd);
 	clean();
 	switch (tempcmd)
 	{
 	case 1 :
 	{
-		printf("\nÇëÊäÈëĞÂµÄÊéÃû£º");
+		printf("\nè¯·è¾“å…¥æ–°çš„ä¹¦åï¼š");
 		scanf("%s", &templist[tempn].name);
 		
-		printf("\n¸ÃÍ¼ÊéÃû¸üĞÂÍê³É~\n\n\n°´ÈÎÒâ¼ü¼ÌĞø---");
+		printf("\nè¯¥å›¾ä¹¦åæ›´æ–°å®Œæˆ~\n\n\næŒ‰ä»»æ„é”®ç»§ç»­---");
 		int aa = getch();
 		clean();
 		break;
 	}
 	case 2:
 	{
-		printf("\nÇëÊäÈëĞÂµÄ×÷Õß£º");
+		printf("\nè¯·è¾“å…¥æ–°çš„ä½œè€…ï¼š");
 		scanf("%s", &templist[tempn].author);
-		printf("\n¸Ã×÷Õß¸üĞÂÍê³É~\n\n\n°´ÈÎÒâ¼ü¼ÌĞø---");
+		printf("\nè¯¥ä½œè€…æ›´æ–°å®Œæˆ~\n\n\næŒ‰ä»»æ„é”®ç»§ç»­---");
 		int aa = getch();
 		clean();
 		break;
 	}
 	case 3:
 	{
-		printf("\nÇëÊäÈëĞÂµÄ¼Û¸ñ£º");
-		scanf("%s", &templist[tempn].price);
-		printf("\n¸ÃÍ¼Êé¼Û¸ñ¸üĞÂÍê³É~\n\n\n°´ÈÎÒâ¼ü¼ÌĞø---");
+		printf("\nè¯·è¾“å…¥æ–°çš„ä»·æ ¼ï¼š");
+		scanf("%f", &templist[tempn].price);
+		printf("\nè¯¥å›¾ä¹¦ä»·æ ¼æ›´æ–°å®Œæˆ~\n\n\næŒ‰ä»»æ„é”®ç»§ç»­---");
 		int aa = getch();
 		clean();
 		break;
 	}
 	default:
-		printf("ÇëÊäÈëÕıÈ·µÄÖ¸Áî~");
+		printf("è¯·è¾“å…¥æ­£ç¡®çš„æŒ‡ä»¤~");
 		break;
 	}
 	return templist;
 }
 
-queryBook(bk templist[])			//²éÑ¯Êé¼®ĞÅÏ¢ 
+queryBook(bk templist[])			//æŸ¥è¯¢ä¹¦ç±ä¿¡æ¯ 
 {
+	if (num == 0)
+	{
+		printf("å½“å‰å›¾ä¹¦é¦†é‡Œè¿˜æ²¡æœ‰ä¹¦ç±ï¼Œè¯·å…ˆæ·»åŠ ä¸€æœ¬ä¹¦å“¦~");
+		printf("\n\næŒ‰ä»»æ„é”®è¿”å›ç³»ç»Ÿ~~~\n\n\n");
+		int a = getch();
+		clean();
+		return;
+	}
 	int i;
 	//int n = cout(templist);
-	printf("Ä¿Ç°¹²ÓĞ%d±¾Êé£¬ÇëÎÊÄúÒª²é¿´µÚ¼¸±¾£º", num);
+	printf("ç›®å‰å…±æœ‰%dæœ¬ä¹¦ï¼Œç›®å½•å¦‚ä¸‹ï¼Œè¯·é—®æ‚¨è¦æŸ¥çœ‹ç¬¬å‡ æœ¬ï¼š", num);
+	for (i = 0;i <= num;i++)
+	{
+		if (templist[i].id >= 0 && templist[i].id < 100)
+			printf("\n\nã€Š%sã€‹------%d", templist[i].name, templist[i].id);
+		else
+			printf("\n");
+
+		printf("\n");
+		//templist[i].id > 0 && templist[i].id < 100 ? printf("\n\nã€Š%sã€‹------%d\n", templist[i].name, templist[i].id):printf("\n");
+	}
 	scanf("%d", &i);
 	printf("\n\n-----------------------");
-	printf("\n\nÊéid£º %d", i);
-	printf("\n\nÊéÃû£º ¡¶%s¡·", templist[i - 1].name);
-	printf("\n\n×÷Õß£º %s", templist[i - 1].author);
-	printf("\n\n¼Û¸ñ£º %.2f\n", templist[i - 1].price);
+	printf("\n\nä¹¦idï¼š %d", i);
+	printf("\n\nä¹¦åï¼š ã€Š%sã€‹", templist[i - 1].name);
+	printf("\n\nä½œè€…ï¼š %s", templist[i - 1].author);
+	printf("\n\nä»·æ ¼ï¼š %.2f\n", templist[i - 1].price);
+	printf("\næŒ‰ä»»æ„é”®ç»§ç»­~~");
+	int aa = getch();
+	clean();
+}
+
+allBook(bk templist[])
+{
+	if (num == 0)
+	{
+		printf("å½“å‰å›¾ä¹¦é¦†é‡Œè¿˜æ²¡æœ‰ä¹¦ç±ï¼Œè¯·å…ˆæ·»åŠ ä¸€æœ¬ä¹¦å“¦~");
+		printf("\n\næŒ‰ä»»æ„é”®è¿”å›ç³»ç»Ÿ~~~\n\n\n");
+		int a = getch();
+		clean();
+		return;
+	}
+	int i;
+	for (i = 0;i < num;i++)
+	{
+		printf("---------------------");
+		printf("\n\nid:%d\n",templist[i].id);
+		printf("\nä¹¦å:ã€Š%sã€‹\n",templist[i].name);
+		printf("\nä½œè€…:%s\n",templist[i].author);
+		printf("\nä»·æ ¼:%.2f\n",templist[i].price);
+	}
+	printf("---------------------\n");
+	printf("æŒ‰ä»»æ„é”®ç»§ç»­~");
+	int aa = getch();
+	clean();
+	clean();
 }
 
 void clean()
@@ -205,7 +297,7 @@ void clean()
 	printf("\n\n\n");
 }
 
-int cout(bk templist[])		//±éÀúÊı×é£¬²éÕÒ¿ÕÈ±£¨Õë¶Ôbk½á¹¹ÌåÊı×é£©
+int cout(bk templist[])		//éå†æ•°ç»„ï¼ŒæŸ¥æ‰¾ç©ºç¼ºï¼ˆé’ˆå¯¹bkç»“æ„ä½“æ•°ç»„ï¼‰
 {
 	int i, n;
 
