@@ -70,12 +70,7 @@ int main()
 
 addBook(bk templist[])				//添加书籍 
 {
-	//int n = cout(templist);
-
-
-	printf("\n num为：%d\n", num);		//记得删
-
-
+	printf("\nnum = %d\n", num);
 	printf("请输入要添加书籍的名称：");
 	scanf("%s", &templist[num].name);
 
@@ -97,12 +92,41 @@ addBook(bk templist[])				//添加书籍
 
 delBook(bk templist[])				//删除书籍 
 {
+	int tempn, m, tempcmd, i;
 
+	//int n = cout(templist);
+	//printf("\n%d\n", n);
+	printf("图书列表及id如下：\n");
+	for (i = 0;i <= num;i++)
+	{
+		if (templist[i].id >= 0 && templist[i].id < 100)
+			printf("\n\n《%s》------%d", templist[i].name, templist[i].id + 1);
+		else
+			printf("\n");
+
+		printf("\n");
+		//templist[i].id > 0 && templist[i].id < 100 ? printf("\n\n《%s》------%d\n", templist[i].name, templist[i].id):printf("\n");
+	}
+	printf("\n请输入要删除书籍的id：");
+	scanf("%d", &m);
+	//templist[ m - 1].name = "该图书已下架";
+	for (i = m - 1;i < num + 1;i++)
+	{
+		templist[i] = templist[m];
+	}
+	num--;
+	for (i = 0;i < num;i++)
+	{
+		templist[i].id--;
+	}
+	printf("下架成功\n\n按任意键继续~");
+	tempn = getch();
+	clean();
 }
 
 modifyBook(bk templist[])			//修改书籍信息 
-{	
-	int tempn,tempcmd,i;
+{
+	int tempn,tempm,tempcmd,i;
 	
 	int n = cout(templist);
 	//printf("\n%d\n", n);
@@ -118,18 +142,21 @@ modifyBook(bk templist[])			//修改书籍信息
 		//templist[i].id > 0 && templist[i].id < 100 ? printf("\n\n《%s》------%d\n", templist[i].name, templist[i].id):printf("\n");
 	}
 	printf("\n请输入要修改的书籍id：");
-	scanf("%d", &tempn);
+	scanf("%d", &tempm);
+	clean();
+	tempn=tempm-1;
 	printf("\n请输入要修改书籍的哪项内容：");
 	printf("\n1.书名		2.作者		3.价格		\n");
 	scanf("%d", &tempcmd);
+	clean();
 	switch (tempcmd)
 	{
 	case 1 :
 	{
 		printf("\n请输入新的书名：");
 		scanf("%s", &templist[tempn].name);
-		return templist;
-		printf("\n该图书名更新完成~\n按任意键继续---");
+		
+		printf("\n该图书名更新完成~\n\n\n按任意键继续---");
 		int aa = getch();
 		clean();
 		break;
@@ -138,8 +165,7 @@ modifyBook(bk templist[])			//修改书籍信息
 	{
 		printf("\n请输入新的作者：");
 		scanf("%s", &templist[tempn].author);
-		return templist;
-		printf("\n该作者更新完成~\n按任意键继续---");
+		printf("\n该作者更新完成~\n\n\n按任意键继续---");
 		int aa = getch();
 		clean();
 		break;
@@ -148,8 +174,7 @@ modifyBook(bk templist[])			//修改书籍信息
 	{
 		printf("\n请输入新的价格：");
 		scanf("%s", &templist[tempn].price);
-		return templist;
-		printf("\n该图书价格更新完成~\n按任意键继续---");
+		printf("\n该图书价格更新完成~\n\n\n按任意键继续---");
 		int aa = getch();
 		clean();
 		break;
@@ -158,7 +183,7 @@ modifyBook(bk templist[])			//修改书籍信息
 		printf("请输入正确的指令~");
 		break;
 	}
-	
+	return templist;
 }
 
 queryBook(bk templist[])			//查询书籍信息 
@@ -170,11 +195,11 @@ queryBook(bk templist[])			//查询书籍信息
 	printf("\n\n-----------------------");
 	printf("\n\n书id： %d", i);
 	printf("\n\n书名： 《%s》", templist[i - 1].name);
-	printf("\n\n作者： 《%s》", templist[i - 1].author);
+	printf("\n\n作者： %s", templist[i - 1].author);
 	printf("\n\n价格： %.2f\n", templist[i - 1].price);
 }
 
-void clean()		//格式化屏幕指令
+void clean()
 {
 	system("cls");
 	printf("\n\n\n");
