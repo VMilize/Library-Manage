@@ -85,6 +85,8 @@ addBook(bk templist[])				//添加书籍
 	printf("\n\n请输入要添加书籍的价格：");
 	scanf("%f", &templist[num].price);
 
+	templist[num].id = num;
+
 	printf("\n\n《%s》的id为：%d", templist[num].name,num+1);
 	num++;
 	printf("\n\n按任意键返回系统~~~\n\n\n");
@@ -99,8 +101,64 @@ delBook(bk templist[])				//删除书籍
 }
 
 modifyBook(bk templist[])			//修改书籍信息 
-{
+{	
+	int tempn,tempcmd,i;
+	
+	int n = cout(templist);
+	//printf("\n%d\n", n);
+	printf("图书列表及id如下：\n");
+	for (i = 0;i <= num;i++)
+	{		
+		if (templist[i].id >= 0 && templist[i].id < 100)
+			printf("\n\n《%s》------%d", templist[i].name, templist[i].id+1);
+		else
+			printf("\n");
 
+		printf("\n");
+		//templist[i].id > 0 && templist[i].id < 100 ? printf("\n\n《%s》------%d\n", templist[i].name, templist[i].id):printf("\n");
+	}
+	printf("\n请输入要修改的书籍id：");
+	scanf("%d", &tempn);
+	printf("\n请输入要修改书籍的哪项内容：");
+	printf("\n1.书名		2.作者		3.价格		\n");
+	scanf("%d", &tempcmd);
+	switch (tempcmd)
+	{
+	case 1 :
+	{
+		printf("\n请输入新的书名：");
+		scanf("%s", &templist[tempn].name);
+		return templist;
+		printf("\n该图书名更新完成~\n按任意键继续---");
+		int aa = getch();
+		clean();
+		break;
+	}
+	case 2:
+	{
+		printf("\n请输入新的作者：");
+		scanf("%s", &templist[tempn].author);
+		return templist;
+		printf("\n该作者更新完成~\n按任意键继续---");
+		int aa = getch();
+		clean();
+		break;
+	}
+	case 3:
+	{
+		printf("\n请输入新的价格：");
+		scanf("%s", &templist[tempn].price);
+		return templist;
+		printf("\n该图书价格更新完成~\n按任意键继续---");
+		int aa = getch();
+		clean();
+		break;
+	}
+	default:
+		printf("请输入正确的指令~");
+		break;
+	}
+	
 }
 
 queryBook(bk templist[])			//查询书籍信息 
